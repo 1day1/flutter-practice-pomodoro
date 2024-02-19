@@ -13,6 +13,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: ThemeData(
+        shadowColor: const Color(0xFF010101),
         textTheme: const TextTheme(
           displayLarge: TextStyle(
             color: Color(0xFF232B55),
