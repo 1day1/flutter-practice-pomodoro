@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:pomodoro/screens/home_screen.dart';
+import 'package:pomodoro/screens/onboarding.dart';
 
 void main() {
   runApp(const MyApp());
@@ -34,7 +34,7 @@ class MyApp extends StatelessWidget {
           onSurface: Color(0xFFE7626C),
         ),
       ),
-      home: const HomeScreen(),
+      home: const OnboardingPage(),
     );
   }
 }
