@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pomodoro/components/onboarding_data.dart';
 import 'package:pomodoro/components/onboarding_info.dart';
-import 'package:pomodoro/main.dart';
 import 'package:pomodoro/screens/home_screen.dart';
 
 class OnboardingPage extends StatefulWidget {

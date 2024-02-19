@@ -1,16 +1,27 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:pomodoro/screens/home_screen.dart';
 import 'package:pomodoro/screens/onboarding.dart';
 
 void main() {
   runApp(const MyApp());
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   const MyApp({super.key});
+
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  bool isOnboarding = false;
 
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
+
     return MaterialApp(
       theme: ThemeData(
         shadowColor: const Color(0xFF010101),
@@ -34,7 +45,7 @@ class MyApp extends StatelessWidget {
           onSurface: Color(0xFFE7626C),
         ),
       ),
-      home: const OnboardingPage(),
+      home: isOnboarding ? const OnboardingPage() : const HomeScreen(),
     );
   }
 }

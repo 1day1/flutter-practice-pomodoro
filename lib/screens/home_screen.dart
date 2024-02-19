@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:pomodoro/screens/onboarding.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -72,14 +73,14 @@ class _HomeScreenState extends State<HomeScreen> {
       body: Column(
         children: [
           Flexible(
-            flex: 1,
+            flex: 2,
             child: Container(
               alignment: Alignment.bottomCenter,
               child: Text(
                 format(totalSeconds),
                 style: TextStyle(
                   color: Theme.of(context).cardColor,
-                  fontSize: 89,
+                  fontSize: 120,
                   fontWeight: FontWeight.w600,
                 ),
               ),
@@ -88,8 +89,11 @@ class _HomeScreenState extends State<HomeScreen> {
           Flexible(
             flex: 3,
             child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
+                const SizedBox(
+                  height: 50,
+                ),
                 Center(
                   child: IconButton(
                     iconSize: 120,
@@ -102,17 +106,50 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                   ),
                 ),
-                const SizedBox(
-                  height: 100,
-                ),
                 Center(
-                  child: IconButton(
-                    iconSize: 50,
-                    color: Theme.of(context).cardColor,
-                    onPressed: isRunning ? onResetPressed : () {},
-                    icon: Icon(
-                      isRunning ? Icons.restart_alt_outlined : null,
-                    ),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      IconButton(
+                        iconSize: 50,
+                        color: Theme.of(context).cardColor,
+                        onPressed: () {
+                          setState(() {
+                            isDayAndNight = !isDayAndNight;
+                          });
+                        },
+                        icon: Icon(
+                          isDayAndNight
+                              ? Icons.dark_mode_outlined
+                              : Icons.light_mode_outlined,
+                        ),
+                      ),
+                      IconButton(
+                        iconSize: 50,
+                        color: Theme.of(context).cardColor,
+                        onPressed: isRunning ? onResetPressed : () {},
+                        icon: Icon(
+                          isRunning ? Icons.restart_alt_outlined : null,
+                        ),
+                      ),
+                      IconButton(
+                        iconSize: 50,
+                        color: Theme.of(context).cardColor,
+                        onPressed: () {
+                          // var isOnboarding = true;
+                          timer.cancel();
+
+                          Navigator.pushReplacement(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) =>
+                                      const OnboardingPage()));
+                        },
+                        icon: const Icon(
+                          Icons.help_center_outlined,
+                        ),
+                      ),
+                    ],
                   ),
                 ),
               ],
